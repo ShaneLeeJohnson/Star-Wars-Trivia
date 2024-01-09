@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Star Wars Trivia with Spotify Music</title>
-  <!-- Include Bulma CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-<body>
-  <div class="container">
-    <h1 class="title">Star Wars Trivia with Spotify Music</h1>
-    <button id="startGameBtn" class="button is-primary">Start Game</button>
-    <div id="questionContainer" style="display: none;">
-      <h2 class="subtitle" id="question"></h2>
-      <input type="text" id="answerInput" placeholder="Your Answer">
-      <button id="submitAnswerBtn" class="button is-info">Submit Answer</button>
+  <head>
+    <title>Star Wars Trivia with Spotify Music</title>
+    <!-- Include Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero is-medium is-link">
+      <div class="hero-body">
+        <p class="title">Star Wars Trivia with Spotify Music</p>
+        <p class="subtitle">
+          An app for Star Wars fans to test their knowledge!
+        </p>
+      </div>
+    </section>
+
+    <!-- Start Quiz with Start Button -->
+    
+    <div class="container">
+        <div class="content is-normal">
+            <h1>When quiz starts</h1>
+            
+          </div>
+      <button id="startGameBtn" class="button is-primary">Start Game</button>
+
+      <!-- Question Container, Answer Text Input, Submit Button -->
+      <div id="questionContainer">
+        <h2 class="subtitle" id="question"></h2>
+        <input type="text" id="answerInput" placeholder="Your Answer" />
+        <button id="submitAnswerBtn" class="button is-info">
+          Submit Answer
+        </button>
+      </div>
+      <div>
+        <button id="playMusicBtn" class="button is-success">Play Music</button>
+        <button id="pauseMusicBtn" class="button is-warning">
+          Pause Music
+        </button>
+      </div>
     </div>
-    <div>
-      <button id="playMusicBtn" class="button is-success" style="display: none;">Play Music</button>
-      <button id="pauseMusicBtn" class="button is-warning" style="display: none;">Pause Music</button>
+
+    <!-- Modal for quiz option -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Modal title</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <!-- Content ... -->
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">Save changes</button>
+          <button class="button">Cancel</button>
+        </footer>
+      </div>
     </div>
-  </div>
+    <!-- JavaScript -->
   <script src="assets/js/script.js"></script>
- </body>
+  </body>
 </html>
