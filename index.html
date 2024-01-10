@@ -10,15 +10,14 @@
   </head>
   <body>
     <!-- Navigation -->
-        <div class="navbar-end has-background-black navbar-item">
-          <div class="button is-outlined is-warning">
-            <a class="has-text-warning	">
-              High Scores
-            </a>
-          </div>
-        </div>
+    <div class="navbar-end has-background-black navbar-item">
+      <div id="highScoreDivBtn" class="button is-outlined is-warning">
+        <a href="highScores.html" class="has-text-warning	">
+          High Scores
+        </a>
       </div>
     </div>
+
     <!-- Hero Section -->
     <section class="hero is-medium is-link has-background-black">
       <div class="hero-body">
@@ -35,7 +34,7 @@
       class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6"
     >
       <div
-        class="content is-normal mb-6 has-text-centered has-text-weight-semibold"
+        id="startingInfoDiv" class="content is-normal mb-6 has-text-centered has-text-weight-semibold"
       >
         <p>
           Upon starting quiz, an option for music will appear and questions will
@@ -49,13 +48,13 @@
 
       <!-- Question Container-->
       <div
-        class="m-4 container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column"
+        id="potentialQuestionDiv" class="m-4 container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column"
       >
       <h2 class="subtitle" id="question">Potential Question</h2>
        </div>
 
        <!-- Answer Text Input, Submit Button -->
-       <div class="field is-grouped">
+       <div id="answerForm" class="field is-grouped">
         <p class="control is-expanded">
           <input class="input" type="text" placeholder="Enter Answer Here">
         </p>
@@ -98,6 +97,10 @@
         </footer>
       </div>
     </div>
+
+    <!-- Ask question div and answer choices div -->
+
+
     <!-- JavaScript -->
     <script src="assets/js/script.js"></script>
   </body>
