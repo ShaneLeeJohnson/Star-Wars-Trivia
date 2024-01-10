@@ -12,13 +12,13 @@
 <body>
     <!-- Navigation -->
     <div class="navbar-end has-background-black navbar-item">
-        <div class="button is-outlined is-warning">
-            <a class="has-text-warning	">
-                High Scores
-            </a>
-        </div>
+      <div id="highScoreDivBtn" class="button is-outlined is-warning">
+        <a href="highScores.html" class="has-text-warning	">
+          High Scores
+        </a>
+      </div>
     </div>
-    </div>
+
     <!-- Hero Section -->
     <section class="hero is-medium is-link has-background-black">
         <div class="hero-body">
@@ -31,50 +31,58 @@
 
     <!-- Start Quiz with Start Button -->
 
-    <div class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6">
-        <div class="content is-normal mb-6 has-text-centered has-text-weight-semibold">
-            <p id="question">
-                Upon starting quiz, an option for music will appear and questions will
-                be cycled. The overall score is calculated by how many questions are
-                answered correctly.
-            </p>
-            <section id="answer-options">
-                <div class="button-div">
-                    <button class="answer-button"></button>
-                </div>
-                <div class="button-div">
-                    <button class="answer-button"></button>
-                </div>
-                <div class="button-div">
-                    <button class="answer-button"></button>
-                </div>
-                <div class="button-div">
-                    <button class="answer-button"></button>
-                </div>
-            </section>
-        </div>
-        <button id="startGameBtn" class="button is-warning m-4">
-            Start Game
-        </button>
+    <div
+      class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6"
+    >
+      <div
+        id="startingInfoDiv" class="content is-normal mb-6 has-text-centered has-text-weight-semibold"
+      >
+        <p id="question">
+          Upon starting quiz, an option for music will appear and questions will
+          be cycled. The overall score is calculated by how many questions are
+          answered correctly.
+        </p>
+        <section id="answer-container">
+          <section id="answer-options">
+              <div class="button-div">
+                  <button class="answer-button"></button>
+              </div>
+              <div class="button-div">
+                  <button class="answer-button"></button>
+              </div>
+              <div class="button-div">
+                  <button class="answer-button"></button>
+              </div>
+              <div class="button-div">
+                  <button class="answer-button"></button>
+              </div>
+          </section>
+      </section>
+      </div>
+      <button id="startGameBtn" class="button is-warning m-4">
+        Start Game
+      </button>
 
-        <!-- Question Container-->
-        <div class="m-4 container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column">
-            <h2 class="subtitle" id="question">Potential Question</h2>
-        </div>
+      <!-- Question Container-->
+      <div
+        id="potentialQuestionDiv" class="m-4 container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column"
+      >
+      <h2 class="subtitle">Potential Question</h2>
+       </div>
 
-        <!-- Answer Text Input, Submit Button -->
-        <div class="field is-grouped">
-            <p class="control is-expanded">
-                <input class="input" type="text" placeholder="Enter Answer Here">
-            </p>
-            <p class="control">
-                <a class="button is-black">
-                    Search
-                </a>
-            </p>
-        </div>
+       <!-- Answer Text Input, Submit Button -->
+       <div id="answerForm" class="field is-grouped">
+        <p class="control is-expanded">
+          <input class="input" type="text" placeholder="Enter Answer Here">
+        </p>
+        <p class="control">
+          <a class="button is-black">
+            Search
+          </a>
+        </p>
+      </div>
 
-
+      
 
         <div class="container is-max-desktop m-6">
             <div class="content is-normal column is-half m-6 p-4">
@@ -106,6 +114,10 @@
             </footer>
         </div>
     </div>
+
+    <!-- Ask question div and answer choices div -->
+
+
     <!-- JavaScript -->
     <script src="assets/js/script.js"></script>
 </body>
