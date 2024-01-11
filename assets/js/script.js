@@ -107,3 +107,69 @@ function handleAnswerClick() {
     currentQuestion = peopleQuestions[index];
     displayQuestion();
 }
+
+
+      // This code loads the IFrame Player API code asynchronously.
+      
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var videoId = '0W7dtwOFpGU';
+      var player;
+      function onYouTubeIframeAPIReady(){
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: '0W7dtwOFpGU',
+          playerVars: { 'rel': 0} 
+          });
+        }
+
+      
+        // YouTube video ID of Star Wars ambient music
+        var videoId = '0W7dtwOFpGU';
+        var player;
+      
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('youtubePlayer', {
+            height: '390',
+            width: '640',
+            videoId: videoId,
+           //rel set to 0 to take away other suggested videos when playing
+            playerVars: { 'rel': 0 },
+            events: {
+              'onReady': onPlayerReady,
+            }
+          });
+        }
+      
+        function onPlayerReady(event) {
+          // You can start the video here or play the audio (music) as needed.
+          // For example, to start the video:
+          // event.target.playVideo(); is not needed at this time but here for reference
+        }
+      
+        document.getElementById('playMusicBtn').addEventListener('click', function() {
+          // When the "playMusicBtn" button is clicked, play the video or audio.
+          // For example, to play the audio (music):
+          player.playVideo(); // Assuming the video is an audio track.
+    
+          document.getElementById('pauseMusicBtn').addEventListener('click', function () {
+            // When the "pauseMusicBtn" button is clicked, stop the video
+            player.stopVideo();
+        });
+
+        });
+     
+      
+
+
+
+  
+
+  
