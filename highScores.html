@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Star Wars Trivia High Scores</title>
-    <!-- Include Bulma CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-  </head>
-  <body>
-    <button>Back</button>
-    <h2>High Scores:</h2><!--This should be displayed with a border bottom line of solid black 2px-->
-    <button>Clear</button>
-    <!-- JavaScript -->
-    <!-- <script src="assets/js/script.js"></script> -->
-  </body>
+
+<head>
+  <title>Star Wars Trivia High Scores</title>
+  <!-- Include Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+</head>
+
+<body>
+
+  <h2>High Scores:</h2><!--This should be displayed with a border bottom line of solid black 2px-->
+  <section>
+    <ol id="high-scores-list"></ol>
+  </section>
+  <button id="back">Back</button>
+  <button id="clear">Clear</button>
+  <!-- JavaScript -->
+  <script src="assets/js/highScoreLogic.js"></script>
+</body>
+
 </html>
