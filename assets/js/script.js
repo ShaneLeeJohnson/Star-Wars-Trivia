@@ -6,7 +6,8 @@ const questionContainer = document.querySelector('#question');
 const answerContainer = document.querySelector('#answer-container');
 const answerChoices = document.querySelectorAll('.answer-button');
 const startButton = document.querySelector('#startGameBtn');
-const url = 'https://swapi.dev/api/people/?page=1'
+const categoryDropdown = document.querySelector('#category-dropdown');
+const url = 'https://swapi.dev/api/';
 
 answerContainer.style.display = 'none';
 
@@ -63,15 +64,20 @@ const peopleQuestions = [
     }
 ]
 
-fetch(`${url}`)
-    .then(response => response.json())
-    .then(data => {
-        getCorrectAnswers(data);
-        // displayQuestion();
-    })
+let currentQuestion = ''
+let endpoint = 'people'
 
-let index = 0;
-let currentQuestion = peopleQuestions[index];
+categoryDropdown.addEventListener('change', (event) => {
+    const selectedCategory = event.target.value;
+    endpoint = selectedCategory;
+})
+
+function getRandomQuestion(questions) {
+    const randIndex = Math.floor(Math.random() * questions.length);
+    const selectedQuestion = questions[randIndex];
+    questions.splice(randIndex, 1);
+    return selectedQuestion;
+}
 
 function getCorrectAnswers(data) {
     const correctAnswers = []
@@ -90,6 +96,19 @@ function getCorrectAnswers(data) {
     console.log(peopleQuestions);
 }
 
+function startCountdown() {
+    let secondsRemaining = 5;
+
+    const interval = setInterval(() => {
+        questionContainer.textContent = `Game starts in ${secondsRemaining}`;
+        secondsRemaining--;
+        if (secondsRemaining === -1) {
+            clearInterval(interval);
+            displayQuestion();
+        }
+    }, 1000);
+}
+
 function displayQuestion() {
     questionContainer.textContent = currentQuestion.question;
     answerContainer.style.display = 'block';
@@ -100,10 +119,17 @@ function displayQuestion() {
     })
 }
 
-startButton.addEventListener('click', displayQuestion);
+startButton.addEventListener('click', () => {
+    fetch(`${url}${endpoint}/`)
+        .then(response => response.json())
+        .then(data => {
+            getCorrectAnswers(data);
+            currentQuestion = getRandomQuestion(peopleQuestions)
+        })
+    startCountdown();
+});
 
 function handleAnswerClick() {
-    index += 1;
-    currentQuestion = peopleQuestions[index];
+    currentQuestion = getRandomQuestion(peopleQuestions);
     displayQuestion();
 }
