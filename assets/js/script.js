@@ -7,9 +7,20 @@ const answerContainer = document.querySelector('#answer-container');
 const answerChoices = document.querySelectorAll('.answer-button');
 const startButton = document.querySelector('#startGameBtn');
 const categoryDropdown = document.querySelector('#category-dropdown');
+const dropdownText = document.querySelector('#dropdown-text');
+const initialsContainer = document.querySelector('#initials-container');
+const timerElement = document.querySelector('#timer');
+const initialsForm = document.querySelector('#enter-initials');
+const feedback = document.querySelector('#feedback');
 const url = 'https://swapi.dev/api/';
+let currentQuestion = '';
+let endpoint = 'people';
+let score = 0;
+let timerInterval;
+let remainingTime;
 
 answerContainer.style.display = 'none';
+initialsContainer.style.display = 'none';
 
 const peopleQuestions = [
     {
@@ -64,20 +75,10 @@ const peopleQuestions = [
     }
 ]
 
-let currentQuestion = ''
-let endpoint = 'people'
-
 categoryDropdown.addEventListener('change', (event) => {
     const selectedCategory = event.target.value;
     endpoint = selectedCategory;
 })
-
-function getRandomQuestion(questions) {
-    const randIndex = Math.floor(Math.random() * questions.length);
-    const selectedQuestion = questions[randIndex];
-    questions.splice(randIndex, 1);
-    return selectedQuestion;
-}
 
 function getCorrectAnswers(data) {
     const correctAnswers = []
@@ -96,8 +97,27 @@ function getCorrectAnswers(data) {
     console.log(peopleQuestions);
 }
 
+function getRandomQuestion(questions) {
+    const randIndex = Math.floor(Math.random() * questions.length);
+    const selectedQuestion = questions[randIndex];
+    questions.splice(randIndex, 1);
+    return selectedQuestion;
+}
+
+startButton.addEventListener('click', () => {
+    fetch(`${url}${endpoint}/`)
+        .then(response => response.json())
+        .then(data => {
+            getCorrectAnswers(data);
+            currentQuestion = getRandomQuestion(peopleQuestions)
+        })
+    startCountdown();
+    hideElements();
+});
+
 function startCountdown() {
     let secondsRemaining = 5;
+    questionContainer.textContent = `Game starts in`;
 
     const interval = setInterval(() => {
         questionContainer.textContent = `Game starts in ${secondsRemaining}`;
@@ -105,6 +125,20 @@ function startCountdown() {
         if (secondsRemaining === -1) {
             clearInterval(interval);
             displayQuestion();
+            timerCountdown();
+        }
+    }, 1000);
+}
+
+function timerCountdown() {
+    remainingTime = 10;
+    timerElement.textContent = remainingTime;
+    timerInterval = setInterval(() => {
+        remainingTime -= 1;
+        timerElement.textContent = remainingTime;
+        if (remainingTime === 0) {
+            clearInterval(timerInterval);
+            gameOver();
         }
     }, 1000);
 }
@@ -119,17 +153,69 @@ function displayQuestion() {
     })
 }
 
-startButton.addEventListener('click', () => {
-    fetch(`${url}${endpoint}/`)
-        .then(response => response.json())
-        .then(data => {
-            getCorrectAnswers(data);
-            currentQuestion = getRandomQuestion(peopleQuestions)
-        })
-    startCountdown();
-});
-
-function handleAnswerClick() {
-    currentQuestion = getRandomQuestion(peopleQuestions);
-    displayQuestion();
+function hideElements() {
+    startButton.style.display = 'none';
+    categoryDropdown.style.display = 'none';
+    dropdownText.style.display = 'none';
 }
+
+function checkAnswer(userAnswer, correctAnswer) {
+    return userAnswer === correctAnswer;
+}
+
+function handleAnswerClick(event) {
+    const selectedAnswer = event.target.textContent;
+    const isCorrect = checkAnswer(selectedAnswer, currentQuestion.correctAnswer);
+    if (isCorrect) {
+        feedback.textContent = 'Correct';
+        feedback.style.color = 'green';
+        score += 1;
+    }
+    else {
+        feedback.textContent = 'Wrong';
+        feedback.style.color = 'red';
+    }
+    setTimeout(() => {
+        if (peopleQuestions.length === 0) {
+            clearInterval(timerInterval);
+            timerElement.textContent = 0;
+            gameOver();
+            return;
+        }
+        else if (remainingTime === 0) {
+            gameOver();
+            return
+        }
+        currentQuestion = getRandomQuestion(peopleQuestions);
+        displayQuestion();
+        feedback.textContent = '';
+    }, 1000)
+
+}
+
+function gameOver() {
+    questionContainer.textContent = `Game Over! Your score is ${score}`;
+    answerContainer.style.display = 'none';
+    initialsContainer.style.display = 'block';
+}
+
+initialsForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const initials = document.querySelector('#initials').value;
+    if (initials !== '') {
+        let initialsArray = JSON.parse(localStorage.getItem('quizInitials'));
+        let scoreArray = JSON.parse(localStorage.getItem('quizScores'));
+        if (!scoreArray || !initialsArray) {
+            initialsArray = [];
+            scoreArray = [];
+        }
+        initialsArray.push(initials);
+        scoreArray.push(score);
+        localStorage.setItem('quizScores', JSON.stringify(scoreArray));
+        localStorage.setItem('quizInitials', JSON.stringify(initialsArray));
+        window.location.href = './highScores.html';
+    }
+    else {
+        alert('Please enter your initials');
+    }
+})

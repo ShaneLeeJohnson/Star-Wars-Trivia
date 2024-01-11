@@ -33,6 +33,9 @@
 
   <div class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6">
     <div id="startingInfoDiv" class="content is-normal mb-6 has-text-centered has-text-weight-semibold">
+      <section>
+        <p id="time">Time: <span id="timer">0</span></p>
+      </section>
       <p id="question">
         Upon starting quiz, an option for music will appear and questions will
         be cycled. The overall score is calculated by how many questions are
@@ -54,9 +57,10 @@
           </div>
         </section>
       </section>
+      <h2 id="feedback"></h2>
     </div>
 
-    <p>Choose which Star Wars data you want to be quizzed on</p>
+    <p id="dropdown-text">Choose which Star Wars data you want to be quizzed on</p>
     <div id="category-select">
       <select name="category-dropdown" id="category-dropdown">
         <option value="people">People</option>
@@ -64,6 +68,14 @@
         <option value="starships">Starships</option>
       </select>
     </div>
+
+    <section id="initials-container">
+      <form action="" id="enter-initials">
+        <label for="initials">Enter your initials:</label>
+        <input type="text" name="initials" id="initials">
+        <button type="submit">Submit</button>
+      </form>
+    </section>
 
     <button id="startGameBtn" class="button is-warning m-4">
       Start Game
