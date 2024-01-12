@@ -31,8 +31,11 @@
 
   <!-- Start Quiz with Start Button -->
 
-  <div class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6">
-    <div id="startingInfoDiv" class="content is-normal mb-6 has-text-centered has-text-weight-semibold">
+  <div class="container"> <!-- container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6 -->
+    <div id="startingInfoDiv" class="has-text-centered content"> <!-- content is-normal mb-6 has-text-centered has-text-weight-semibold -->
+      <section>
+        <p id="time">Time: <span id="timer">0</span></p>
+      </section>
       <p id="question">
         Upon starting quiz, an option for music will appear and questions will
         be cycled. The overall score is calculated by how many questions are
@@ -54,10 +57,11 @@
           </div>
         </section>
       </section>
+      <h2 id="feedback"></h2>
     </div>
 
-    <p>Choose which Star Wars data you want to be quizzed on</p>
-    <div id="category-select">
+    <p id="dropdown-text" class="has-text-centered">Choose which Star Wars data you want to be quizzed on</p>
+    <div id="category-select" class="has-text-centered">
       <select name="category-dropdown" id="category-dropdown">
         <option value="people">People</option>
         <option value="planets">Planets</option>
@@ -65,22 +69,33 @@
       </select>
     </div>
 
-    <button id="startGameBtn" class="button is-warning m-4">
-      Start Game
-    </button>
+    <section id="initials-container" class="has-text-centered">
+      <form action="" id="enter-initials">
+        <label for="initials">Enter your initials:</label>
+        <input type="text" name="initials" id="initials">
+        <button type="submit">Submit</button>
+      </form>
+    </section>
 
-        <div class="container is-max-desktop m-6">
-            <div class="content is-normal column is-half m-6 p-4">
-                <p>Option to listen to Star Wars music</p>
-                <button id="playMusicBtn" class="button is-success">
-                    Play Music
-                </button>
-                <button id="pauseMusicBtn" class="button is-warning">
-                    Pause Music
-                </button>
-            </div>
-        </div>
+    <div class="has-text-centered">
+      <button id="startGameBtn" class="button is-warning m-4">
+          Start Game
+        </button>
     </div>
+    
+
+    <div class="container is-max-desktop m-6">
+      <div class="content is-normal column is-half m-6 p-4">
+        <p>FOR TESTING PURPOSES ONLY</p>
+        <button id="playMusicBtn" class="button is-success">
+          Play Music
+        </button>
+        <button id="pauseMusicBtn" class="button is-warning">
+          Pause Music
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal for quiz option -->
   <div class="modal">
@@ -103,10 +118,9 @@
   <!-- Ask question div and answer choices div -->
 
 
-    <!-- JavaScript -->
-    <div id="youtubePlayer"></div>
-    <!--<script src="https://www.youtube.com/iframe_api"></script>-->
-    <script src="assets/js/script.js"></script>
+  <!-- JavaScript -->
+  <div id="youtubePlayer"></div>
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
