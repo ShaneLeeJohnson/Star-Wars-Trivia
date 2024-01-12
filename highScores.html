@@ -1,20 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>Star Wars Trivia High Scores</title>
   <!-- Include Bulma CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
+  <!-- Navigation -->
+  <div class="has-background-black navbar-item">
+    <div id="back" class="button is-outlined is-warning">
+      <a href="index.html" class="has-text-warning	">
+        Back
+      </a>
+    </div>
+  </div>
 
-  <h2>High Scores:</h2><!--This should be displayed with a border bottom line of solid black 2px-->
-  <section>
-    <ol id="high-scores-list"></ol>
+  <!-- Hero Section -->
+  <section class="hero is-medium is-link has-background-black">
+    <div class="hero-body">
+      <p class="title">Star Wars Trivia <i>with Music</i></p>
+      <p class="subtitle has-text-warning">
+        An app for Star Wars fans to test their knowledge!
+      </p>
+    </div>
   </section>
-  <button id="back">Back</button>
-  <button id="clear">Clear</button>
+  <div class="HSBFlex">
+    <div class="divH2">
+      <h2>High Scores:</h2>
+    </div>
+    <section>
+      <ol id="high-scores-list"></ol>
+    </section>
+    <div class="clearDivBtn">
+      <div id="clear" class="button is-outlined is-warning has-background-black">
+        <a href="#" class="has-text-warning	">
+          Clear
+        </a>
+      </div>
+    </div>
+  </div>
+  
   <!-- JavaScript -->
   <script src="assets/js/highScoreLogic.js"></script>
 </body>
