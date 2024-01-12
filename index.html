@@ -2,87 +2,72 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Wars Trivia with Music</title>
-    <!-- Include Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Wars Trivia with Music</title>
+  <!-- Include Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
 </head>
 
 <body>
-    <!-- Navigation -->
-    <div class="navbar-end has-background-black navbar-item">
-      <div id="highScoreDivBtn" class="button is-outlined is-warning">
-        <a href="highScores.html" class="has-text-warning	">
-          High Scores
-        </a>
-      </div>
+  <!-- Navigation -->
+  <div class="navbar-end has-background-black navbar-item">
+    <div id="highScoreDivBtn" class="button is-outlined is-warning">
+      <a href="highScores.html" class="has-text-warning	">
+        High Scores
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero is-medium is-link has-background-black">
+    <div class="hero-body">
+      <p class="title">Star Wars Trivia <i>with Music</i></p>
+      <p class="subtitle has-text-warning">
+        An app for Star Wars fans to test their knowledge!
+      </p>
+    </div>
+  </section>
+
+  <!-- Start Quiz with Start Button -->
+
+  <div class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6">
+    <div id="startingInfoDiv" class="content is-normal mb-6 has-text-centered has-text-weight-semibold">
+      <p id="question">
+        Upon starting quiz, an option for music will appear and questions will
+        be cycled. The overall score is calculated by how many questions are
+        answered correctly.
+      </p>
+      <section id="answer-container">
+        <section id="answer-options">
+          <div class="button-div">
+            <button class="answer-button"></button>
+          </div>
+          <div class="button-div">
+            <button class="answer-button"></button>
+          </div>
+          <div class="button-div">
+            <button class="answer-button"></button>
+          </div>
+          <div class="button-div">
+            <button class="answer-button"></button>
+          </div>
+        </section>
+      </section>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero is-medium is-link has-background-black">
-        <div class="hero-body">
-            <p class="title">Star Wars Trivia <i>with Music</i></p>
-            <p class="subtitle has-text-warning">
-                An app for Star Wars fans to test their knowledge!
-            </p>
-        </div>
-    </section>
+    <p>Choose which Star Wars data you want to be quizzed on</p>
+    <div id="category-select">
+      <select name="category-dropdown" id="category-dropdown">
+        <option value="people">People</option>
+        <option value="planets">Planets</option>
+        <option value="starships">Starships</option>
+      </select>
+    </div>
 
-    <!-- Start Quiz with Start Button -->
-
-    <div
-      class="container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6"
-    >
-      <div
-        id="startingInfoDiv" class="content is-normal mb-6 has-text-centered has-text-weight-semibold"
-      >
-        <p id="question">
-          Upon starting quiz, an option for music will appear and questions will
-          be cycled. The overall score is calculated by how many questions are
-          answered correctly.
-        </p>
-        <section id="answer-container">
-          <section id="answer-options">
-              <div class="button-div">
-                  <button class="answer-button"></button>
-              </div>
-              <div class="button-div">
-                  <button class="answer-button"></button>
-              </div>
-              <div class="button-div">
-                  <button class="answer-button"></button>
-              </div>
-              <div class="button-div">
-                  <button class="answer-button"></button>
-              </div>
-          </section>
-      </section>
-      </div>
-      <button id="startGameBtn" class="button is-warning m-4">
-        Start Game
-      </button>
-
-      <!-- Question Container-->
-      <div
-        id="potentialQuestionDiv" class="m-4 container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column"
-      >
-      <h2 class="subtitle">Potential Question</h2>
-       </div>
-
-       <!-- Answer Text Input, Submit Button -->
-       <div id="answerForm" class="field is-grouped">
-        <p class="control is-expanded">
-          <input class="input" type="text" placeholder="Enter Answer Here">
-        </p>
-        <p class="control">
-          <a class="button is-black">
-            Search
-          </a>
-        </p>
-      </div>
-
-      
+    <button id="startGameBtn" class="button is-warning m-4">
+      Start Game
+    </button>
 
         <div class="container is-max-desktop m-6">
             <div class="content is-normal column is-half m-6 p-4">
@@ -97,25 +82,26 @@
         </div>
     </div>
 
-    <!-- Modal for quiz option -->
-    <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Modal title</p>
-                <button class="delete" aria-label="close"></button>
-            </header>
-            <section class="modal-card-body">
-                <!-- Content ... -->
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button is-success">Save changes</button>
-                <button class="button">Cancel</button>
-            </footer>
-        </div>
+  <!-- Modal for quiz option -->
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Modal title</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Content ... -->
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save changes</button>
+        <button class="button">Cancel</button>
+      </footer>
     </div>
+  </div>
 
-    <!-- Ask question div and answer choices div -->
+  <!-- Ask question div and answer choices div -->
+
 
     <!-- JavaScript -->
     <div id="youtubePlayer"></div>
