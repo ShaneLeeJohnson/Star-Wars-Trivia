@@ -219,3 +219,7 @@ initialsForm.addEventListener('submit', function (event) {
         alert('Please enter your initials');
     }
 })
+
+highScoreBtnDiv.addEventListener('click', () => {
+    window.location.href = './highScores.html';
+})
