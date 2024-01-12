@@ -127,6 +127,7 @@ startButton.addEventListener('click', () => {
             currentQuestion = getRandomQuestion(peopleQuestions)
         })
     startCountdown();
+    player.playVideo();
 });
 
 function handleAnswerClick() {
@@ -145,20 +146,20 @@ function handleAnswerClick() {
 
       // This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
-      var videoId = '0W7dtwOFpGU';
+      var videoId = 'ffz5JFRSXWs';
       var player;
       function onYouTubeIframeAPIReady(){
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: '0W7dtwOFpGU',
+          videoId: 'ffz5JFRSXWs',
           playerVars: { 'rel': 0} 
           });
         }
 
       
         // YouTube video ID of Star Wars ambient music
-        var videoId = '0W7dtwOFpGU';
+        var videoId = 'ffz5JFRSXWs';
         var player;
       
         function onYouTubeIframeAPIReady() {
@@ -183,7 +184,7 @@ function handleAnswerClick() {
         document.getElementById('playMusicBtn').addEventListener('click', function() {
           // When the "playMusicBtn" button is clicked, play the video or audio.
           // For example, to play the audio (music):
-          player.playVideo(); // Assuming the video is an audio track.
+         //player.playVideo(); // the video will now play under the start game button
     
           document.getElementById('pauseMusicBtn').addEventListener('click', function () {
             // When the "pauseMusicBtn" button is clicked, stop the video
