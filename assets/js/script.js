@@ -250,7 +250,7 @@ function startCountdown() {
 }
 
 function timerCountdown() {
-    remainingTime = 10;
+    remainingTime = 60;
     timerElement.textContent = remainingTime;
     timerInterval = setInterval(() => {
         remainingTime -= 1;
