@@ -1,73 +1,25 @@
 // Below here are the elements that will be used for dom minipulation
-highScoreBtnDiv = document.getElementById('highScoreDivBtn');
-startingInfoDiv = document.getElementById('startingInfoDiv');
-potentialQuestionDiv = document.getElementById('potentialQuestionDiv');
-answerForm = document.getElementById('answerForm');
+const highScoreBtnDiv = document.querySelector('#highScoreDivBtn');
 const questionContainer = document.querySelector('#question');
+const extraText = document.querySelector('#extra-text');
 const answerContainer = document.querySelector('#answer-container');
 const answerChoices = document.querySelectorAll('.answer-button');
-const startButton = document.querySelector('#startGameBtn');
-const categoryDropdown = document.querySelector('#category-dropdown');
-const dropdownText = document.querySelector('#dropdown-text');
+const startButton = document.querySelector('#start-quiz');
+const chooseQuizBtn = document.querySelector('#js-modal-trigger');
 const initialsContainer = document.querySelector('#initials-container');
 const timerElement = document.querySelector('#timer');
 const initialsForm = document.querySelector('#enter-initials');
 const feedback = document.querySelector('#feedback');
 const url = 'https://swapi.dev/api/';
 let currentQuestion = '';
-let endpoint = 'people';
+let endpoint;
 let score = 0;
 let timerInterval;
 let remainingTime;
+let quizQuestions;
 
 answerContainer.style.display = 'none';
 initialsContainer.style.display = 'none';
-
-
-// Declared variable for modal button and modal - KS
-document.addEventListener('DOMContentLoaded', () => {
-    // Functions to open and close a modal
-    function openModal($el) {
-      $el.classList.add('is-active');
-    }
-  
-    function closeModal($el) {
-      $el.classList.remove('is-active');
-    }
-  
-    function closeAllModals() {
-      (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-        closeModal($modal);
-      });
-    }
-  
-    // Click event on buttons to open a specific modal
-    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-      const modal = $trigger.dataset.target;
-      const $target = document.getElementById(modal);
-  
-      $trigger.addEventListener('click', () => {
-        openModal($target);
-      });
-    });
-  
-    // Click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-      const $target = $close.closest('.modal');
-  
-      $close.addEventListener('click', () => {
-        closeModal($target);
-      });
-    });
-  
-    // Keyboard event to close all modals
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'Escape') {
-        closeAllModals();
-      }
-    });
-  });
-
 
 const peopleQuestions = [
     {
@@ -122,26 +74,127 @@ const peopleQuestions = [
     }
 ]
 
-categoryDropdown.addEventListener('change', (event) => { // This event listener is used to replace the current 
-    const selectedCategory = event.target.value;
-    endpoint = selectedCategory;
-})
+const planetQuestions = [
+    {
+        question: 'In the Star Wars universe, which desolate desert planet is home to moisture farmers, Tusken Raiders, and the infamous Mos Eisley cantina?',
+        answers: ['Hoth', 'Naboo', 'Endor', ''],
+        correctAnswer: ''
+    },
+    {
+        question: 'In the Star Wars saga, a peaceful planet known for its lush forests and pacifistic culture meets a tragic fate. Which planet shares this unfortunate destiny?',
+        answers: ['', 'Yavin IV', 'Corellia', 'Ryloth'],
+        correctAnswer: ''
+    },
+    {
+        question: "A Rebel base hidden within a gas giant moon served as a launching pad for a daring attack against the Empire's ultimate weapon. This critical location was nestled within:",
+        answers: ['Hoth', 'Corellia', '', 'Endor'],
+        correctAnswer: ''
+    },
+    {
+        question: 'What icy planet boasts tauntaun-riding rebels and a hidden base besieged by walkers?',
+        answers: ['Yavin IV', '', 'Jakku', 'Coruscant'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Where does a swamp-cloaked hermit, wise in the ways of the Force, train a farm boy in the path of a Jedi?',
+        answers: ['Cloud City', 'Naboo', 'Corellia', ''],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which Star Wars location features a floating city in the clouds, a famous casino, and a carbonite freezing chamber?',
+        answers: ['', 'Coruscant', 'Naboo', 'Corellia'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Unlike the harsh deserts of Tatooine or the icy plains of Hoth, which planet serves as a sanctuary for Ewoks, but becomes a battleground as the Empire seeks to exploit its strategic location?',
+        answers: ['Kashyyyk', '', 'Alderaan', 'Dagobah'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which Star Wars planet boasts serene lakes and waterfalls, a peaceful monarchy threatened by a trade federation invasion, and a young queen who becomes a symbol of resistance?',
+        answers: ['Tatooine', 'Hoth', '', 'Coruscant'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which Star Wars planet is a sprawling metropolis covering an entire planet, filled with towering skyscrapers, a bustling Galactic Senate, and the central seat of the Republic (and later, the Empire)?',
+        answers: ['Tatooine', '', 'Hoth', 'Naboo'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which Star Wars planet houses a hidden aquatic city, specializes in advanced cloning technology, and produces an army of genetically engineered soldiers for the Republic?',
+        answers: ['Yavin IV', 'Corellia', 'Tatooine', ''],
+        correctAnswer: ''
+    }
+]
 
-function getCorrectAnswers(data) { //
+const starshipQuestions = [
+    {
+        question: 'Which Star Wars starship boasts a sleek wedge-shaped design, served as a mainstay of the Rebel Alliance fleet, and carried Princess Leia on daring missions against the Empire?',
+        answers: ['B-Wing', '', 'Millennium Falcon', 'Y-wing'],
+        correctAnswer: ''
+    },
+    {
+        question: "Which Star Wars warship dominates the galaxy with its imposing triangular silhouette, crushing firepower, and the ever-present threat of Darth Vader's dark aura?",
+        answers: ['TIE Fighter', 'Millenium Falcom', '', 'Mon Calamari Cruiser'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which small, heavily-armored craft served as the workhorse of the Rebel Alliance for transporting troops and equipment onto enemy planets, often under hazardous conditions and tight deadlines?',
+        answers: ['', 'CR90 Corellian Corvette', 'B-Wing Starfighter', 'Lambda-class Shuttle'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Despite its immense size and power, what seemingly invincible Imperial weapon was ultimately brought down by a daring Rebel attack, exploiting a single flaw and sparking a beacon of hope against the tyranny of the Empire?',
+        answers: ['TIE Fighter Squadron', 'Imperial Star Destroyer', 'C-3PO and R2-D2 Droid Team', ''],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which iconic Star Wars starship boasts a distinctive Y-shaped design, carries a smuggler and his Wookiee copilot on daring adventures, and has played a pivotal role in saving the galaxy from the clutches of evil?',
+        answers: ['X-wing Starfighter', '', 'Nebulon-B Frigate', 'TIE Fighter'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which Star Wars starfighter features a distinctive twin-ion engine configuration, carries devastating proton bombs, and played a crucial role in the iconic trench run attack on the Death Star?',
+        answers: ['', 'X-wing', 'B-wing', 'A-wing'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Which Star Wars spacecraft boasts signature S-foils, agile maneuverability, and proton torpedoes capable of piercing Imperial armor, often flown by Jedi Knights in daring missions against the Empire?',
+        answers: ['B-wing', 'Y-wing', 'A-wing', ''],
+        correctAnswer: ''
+    },
+    {
+        question: "Which sleek, black starfighter with distinctive red solar panels serves as the personal spacecraft of Darth Vader, striking fear into the hearts of Rebel pilots and showcasing the Empire's technological superiority?",
+        answers: ['TIE Fighter', 'TIE Bomber', '', 'TIE Interceptor'],
+        correctAnswer: ''
+    },
+    {
+        question: "Which colossal Star Destroyer dwarfs its counterparts, boasts a menacing wedge-shaped design, and serves as Darth Vader's personal flagship, casting a terrifying shadow over the galaxy and personifying the Empire's oppressive power?",
+        answers: ['Imperial II-class Star Destroyer', '', 'Venator-class Star Destroyer', 'Mon Calamari Cruiser'],
+        correctAnswer: ''
+    },
+    {
+        question: 'Unlike the firepower of Y-wings or the agility of X-wings, what versatile spacecraft could blend in with civilian traffic, be modified for smuggling and troop deployment, and serve as a vital link between Rebel cells across the galaxy?',
+        answers: ['', 'TIE Fighter', 'Venator-class Star Destroyer', 'Mon Calamari Cruiser'],
+        correctAnswer: ''
+    }
+]
+
+function getCorrectAnswers(data, questions) {
     const correctAnswers = []
     for (i = 0; i < 10; i++) {
         correctAnswers.push(data.results[i].name)
     }
     console.log(correctAnswers)
     for (let i = 0; i < 10; i++) {
-        peopleQuestions[i].correctAnswer = correctAnswers[i];
+        questions[i].correctAnswer = correctAnswers[i];
         for (j = 0; j < 4; j++) {
-            if (peopleQuestions[i].answers[j] === '') {
-                peopleQuestions[i].answers[j] = correctAnswers[i];
+            if (questions[i].answers[j] === '') {
+                questions[i].answers[j] = correctAnswers[i];
             }
         }
     }
-    console.log(peopleQuestions);
+    console.log(questions);
 }
 
 function getRandomQuestion(questions) {
@@ -152,24 +205,42 @@ function getRandomQuestion(questions) {
 }
 
 startButton.addEventListener('click', () => {
+    endpoint = document.querySelector('input[name="rsvp"]:checked').value;
+    switch (endpoint) {
+        case 'people':
+            quizQuestions = peopleQuestions;
+            break;
+        case 'planets':
+            quizQuestions = planetQuestions;
+            break;
+        case 'starships':
+            quizQuestions = starshipQuestions;
+            break;
+        default:
+            console.error('Invalid endpoint:', endpoint);
+            return;
+    }
     fetch(`${url}${endpoint}/`)
         .then(response => response.json())
         .then(data => {
-            getCorrectAnswers(data);
-            currentQuestion = getRandomQuestion(peopleQuestions)
-            
+            getCorrectAnswers(data, quizQuestions);
+            currentQuestion = getRandomQuestion(quizQuestions);
+
         })
     startCountdown();
     hideElements();
+    player.seekTo(0);
     player.playVideo();
 });
 
 function startCountdown() {
     let secondsRemaining = 5;
     questionContainer.textContent = `Game starts in`;
+    extraText.textContent = '';
 
     const interval = setInterval(() => {
-        questionContainer.textContent = `Game starts in ${secondsRemaining}`;
+        questionContainer.textContent = `Game starts in`;
+        extraText.textContent = secondsRemaining;
         secondsRemaining--;
         if (secondsRemaining === -1) {
             clearInterval(interval);
@@ -180,7 +251,7 @@ function startCountdown() {
 }
 
 function timerCountdown() {
-    remainingTime = 10;
+    remainingTime = 60;
     timerElement.textContent = remainingTime;
     timerInterval = setInterval(() => {
         remainingTime -= 1;
@@ -195,6 +266,7 @@ function timerCountdown() {
 function displayQuestion() {
     questionContainer.textContent = currentQuestion.question;
     answerContainer.style.display = 'block';
+    extraText.textContent = '';
 
     answerChoices.forEach((choice, index) => {
         choice.textContent = currentQuestion.answers[index];
@@ -203,9 +275,7 @@ function displayQuestion() {
 }
 
 function hideElements() {
-    startButton.style.display = 'none';
-    categoryDropdown.style.display = 'none';
-    dropdownText.style.display = 'none';
+    chooseQuizBtn.style.display = 'none';
 }
 
 function checkAnswer(userAnswer, correctAnswer) {
@@ -225,7 +295,7 @@ function handleAnswerClick(event) {
         feedback.style.color = 'red';
     }
     setTimeout(() => {
-        if (peopleQuestions.length === 0) {
+        if (quizQuestions.length === 0) {
             clearInterval(timerInterval);
             timerElement.textContent = 0;
             gameOver();
@@ -235,7 +305,7 @@ function handleAnswerClick(event) {
             gameOver();
             return
         }
-        currentQuestion = getRandomQuestion(peopleQuestions);
+        currentQuestion = getRandomQuestion(quizQuestions);
         displayQuestion();
         feedback.textContent = '';
     }, 1000)
@@ -243,9 +313,11 @@ function handleAnswerClick(event) {
 }
 
 function gameOver() {
-    questionContainer.textContent = `Game Over! Your score is ${score}`;
+    questionContainer.textContent = `Game Over!`;
+    extraText.textContent = `Your score is ${score}`;
     answerContainer.style.display = 'none';
     initialsContainer.style.display = 'block';
+    feedback.textContent = '';
     player.stopVideo();
 
 }
@@ -275,9 +347,6 @@ highScoreBtnDiv.addEventListener('click', () => {
     window.location.href = './highScores.html';
 })
 
-
-
-
 //This code loads the IFrame Player API code asynchronously.
 
 var tag = document.createElement('script');
@@ -299,45 +368,70 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //     });
 //   }
 
-
 //     // YouTube video ID of Star Wars ambient music
-var videoId = 'ffz5JFRSXWs';
+// var videoId = 'ffz5JFRSXWs' original video from Angela
+var videoId = 'T31I8FwXhk4'; // Star Wars main theme
 var player;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('youtubePlayer', {
-        height: '390',
-        width: '640',
+        height: '0',
+        width: '0',
         videoId: videoId,
         //        //rel set to 0 to take away other suggested videos when playing
         playerVars: { 'rel': 0 },
-        events: {
-            'onReady': onPlayerReady,
-        }
+        // events: {
+        //     'onReady': onPlayerReady,
+        // }
     });
 }
 
-function onPlayerReady(event) {
-    //       // You can start the video here or play the audio (music) as needed.
-    //       // For example, to start the video:
-    event.target.playVideo(); //is not needed at this time but here for reference
-}
+// function onPlayerReady(event) {
+//     //       // You can start the video here or play the audio (music) as needed.
+//     //       // For example, to start the video:
+//     event.target.seekTo(0); //is not needed at this time but here for reference
+// }
 
-document.getElementById('playMusicBtn').addEventListener('click', function () {
-    //       // When the "playMusicBtn" button is clicked, play the video or audio.
-    //       // For example, to play the audio (music):
-    player.playVideo(); // the video will now play under the start game button
+// Declared variable for modal button and modal - KS
+document.addEventListener('DOMContentLoaded', () => {
+    // Functions to open and close a modal
+    function openModal($el) {
+        $el.classList.add('is-active');
+    }
+
+    function closeModal($el) {
+        $el.classList.remove('is-active');
+    }
+
+    function closeAllModals() {
+        (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+            closeModal($modal);
+        });
+    }
+
+    // Click event on buttons to open a specific modal
+    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+        const modal = $trigger.dataset.target;
+        const $target = document.getElementById(modal);
+
+        $trigger.addEventListener('click', () => {
+            openModal($target);
+        });
+    });
+
+    // Click event on various child elements to close the parent modal
+    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+        const $target = $close.closest('.modal');
+
+        $close.addEventListener('click', () => {
+            closeModal($target);
+        });
+    });
+
+    // Keyboard event to close all modals
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Escape') {
+            closeAllModals();
+        }
+    });
 });
-document.getElementById('pauseMusicBtn').addEventListener('click', function () {
-    //         // When the "pauseMusicBtn" button is clicked, stop the video
-    player.stopVideo();
-});
-
-
-
-
-
-
-
-
-
