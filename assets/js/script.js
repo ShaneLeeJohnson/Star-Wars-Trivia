@@ -180,7 +180,7 @@ const starshipQuestions = [
     }
 ]
 
-function getCorrectAnswers(data, questions) {
+function getCorrectAnswers(data, questions) { // This function is used to save the answers from the API.
     const correctAnswers = []
     for (i = 0; i < 10; i++) {
         correctAnswers.push(data.results[i].name)
@@ -197,14 +197,14 @@ function getCorrectAnswers(data, questions) {
     console.log(questions);
 }
 
-function getRandomQuestion(questions) {
+function getRandomQuestion(questions) { // This function returns a question random question from its own category.
     const randIndex = Math.floor(Math.random() * questions.length);
     const selectedQuestion = questions[randIndex];
     questions.splice(randIndex, 1);
     return selectedQuestion;
 }
 
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', () => { // This line adds functionality to the start button on the start of the page, it also checks the user choies for the modal and assigns quizQuetions with the correlated subject.
     endpoint = document.querySelector('input[name="rsvp"]:checked').value;
     switch (endpoint) {
         case 'people':
@@ -220,7 +220,7 @@ startButton.addEventListener('click', () => {
             console.error('Invalid endpoint:', endpoint);
             return;
     }
-    fetch(`${url}${endpoint}/`)
+    fetch(`${url}${endpoint}/`) //API call is madet
         .then(response => response.json())
         .then(data => {
             getCorrectAnswers(data, quizQuestions);
@@ -233,7 +233,7 @@ startButton.addEventListener('click', () => {
     player.playVideo();
 });
 
-function startCountdown() {
+function startCountdown() { // This function starts the countdown for how long it may take to get the info from the API itself and display the questions at the start.
     let secondsRemaining = 5;
     questionContainer.textContent = `Game starts in`;
     extraText.textContent = '';
@@ -250,7 +250,7 @@ function startCountdown() {
     }, 1000);
 }
 
-function timerCountdown() {
+function timerCountdown() { // This function starts the 1 minute timer that is given for the user to complete the trivia.
     remainingTime = 60;
     timerElement.textContent = remainingTime;
     timerInterval = setInterval(() => {
@@ -263,7 +263,7 @@ function timerCountdown() {
     }, 1000);
 }
 
-function displayQuestion() {
+function displayQuestion() { // This function displays the current quesstion that is prepared.
     questionContainer.textContent = currentQuestion.question;
     answerContainer.style.display = 'block';
     extraText.textContent = '';
@@ -274,15 +274,15 @@ function displayQuestion() {
     })
 }
 
-function hideElements() {
+function hideElements() { // This function hides the modal element used to choose the subject of the trivia.
     chooseQuizBtn.style.display = 'none';
 }
 
-function checkAnswer(userAnswer, correctAnswer) {
+function checkAnswer(userAnswer, correctAnswer) { // This function is used to check if the users answer choice is the correct answer.
     return userAnswer === correctAnswer;
 }
 
-function handleAnswerClick(event) {
+function handleAnswerClick(event) { // This function is attached to an addeventlistener for the answer choices that are displayed
     const selectedAnswer = event.target.textContent;
     const isCorrect = checkAnswer(selectedAnswer, currentQuestion.correctAnswer);
     if (isCorrect) {
@@ -312,7 +312,7 @@ function handleAnswerClick(event) {
 
 }
 
-function gameOver() {
+function gameOver() { // This function changes elements to let the user know that the game ended and pauses the background music.
     questionContainer.textContent = `Game Over!`;
     extraText.textContent = `Your score is ${score}`;
     answerContainer.style.display = 'none';
@@ -322,7 +322,7 @@ function gameOver() {
 
 }
 
-initialsForm.addEventListener('submit', function (event) {
+initialsForm.addEventListener('submit', function (event) { // This addeventlistner is attached to the submit button for the initials and lets the user know that a initial is required to save to the users local storage and display it in the highscores page.
     event.preventDefault();
     const initials = document.querySelector('#initials').value;
     if (initials !== '') {
@@ -343,7 +343,7 @@ initialsForm.addEventListener('submit', function (event) {
     }
 })
 
-highScoreBtnDiv.addEventListener('click', () => {
+highScoreBtnDiv.addEventListener('click', () => { // this addeventlistener is used to send the user to the highscores page which is attached to the highscores button.
     window.location.href = './highScores.html';
 })
 
