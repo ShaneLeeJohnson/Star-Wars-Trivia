@@ -1,3 +1,4 @@
+// Below here are the elements that will be used for dom minipulation
 highScoreBtnDiv = document.getElementById('highScoreDivBtn');
 startingInfoDiv = document.getElementById('startingInfoDiv');
 potentialQuestionDiv = document.getElementById('potentialQuestionDiv');
@@ -121,12 +122,12 @@ const peopleQuestions = [
     }
 ]
 
-categoryDropdown.addEventListener('change', (event) => {
+categoryDropdown.addEventListener('change', (event) => { // This event listener is used to replace the current 
     const selectedCategory = event.target.value;
     endpoint = selectedCategory;
 })
 
-function getCorrectAnswers(data) {
+function getCorrectAnswers(data) { //
     const correctAnswers = []
     for (i = 0; i < 10; i++) {
         correctAnswers.push(data.results[i].name)
