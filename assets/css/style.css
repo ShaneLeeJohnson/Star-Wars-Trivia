@@ -30,6 +30,16 @@
     align-items: center;
 }
 
+.HHSClass {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.chewbaccaPic {
+    height: 300px;
+}
+
 #question {
     font-size: 20px;
     font-weight: bold;
