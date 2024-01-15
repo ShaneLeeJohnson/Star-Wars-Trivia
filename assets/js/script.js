@@ -339,7 +339,8 @@ initialsForm.addEventListener('submit', function (event) { // This addeventlistn
         window.location.href = './highScores.html';
     }
     else {
-        alert('Please enter your initials');
+        const alertModal = document.querySelector('#alert-modal');
+        alertModal.classList.add('is-active');          
     }
 })
 

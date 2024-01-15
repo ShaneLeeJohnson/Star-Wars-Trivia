@@ -40,16 +40,46 @@
     height: 300px;
 }
 
+.pb-4 {
+    /* border: 2px solid black; */
+    margin: 10px;
+    padding: 10px;
+    padding-bottom: 20px;
+}
 #question {
     font-size: 20px;
     font-weight: bold;
 }
 
+@import url('https://fonts.cdnfonts.com/css/star-wars');
+
 #extra-text {
     font-size: 30px;
     font-weight: bold;
+    color: black;
 }
 
+#timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.font {
+    font-family: 'Star Wars';
+    padding-left: 15px;
+    font-size: 45px;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    background: gold;
+    color: whitesmoke;
+}
+  
 @media screen and (max-width: 491px) {
     .HHSClass {
         flex-direction: column;
