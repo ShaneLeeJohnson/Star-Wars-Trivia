@@ -32,104 +32,104 @@
 
   <!-- Start Quiz with Start Button -->
 
-  <div class="container">
-    <!-- container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6 -->
-    <div id="startingInfoDiv" class="has-text-centered content"> <!-- content is-normal mb-6 has-text-centered has-text-weight-semibold -->
-      <section>
-        <p id="time">Time: <span id="timer">0</span></p>
-      </section>
-      <p id="question">
-        Welcome to the Star Wars Quiz!
-        Click the Choose Quiz Type button to pick the Star Wars Topic you want to be quizzed on.
-        You will have 1 minute to correctly answer 10 questions.
-      </p>
-      <p id="extra-text">May the Force be with you!</p>
-      <section id="answer-container">
-        <section id="answer-options">
-          <div class="button-div">
-            <button class="answer-button"></button>
-          </div>
-          <div class="button-div">
-            <button class="answer-button"></button>
-          </div>
-          <div class="button-div">
-            <button class="answer-button"></button>
-          </div>
-          <div class="button-div">
-            <button class="answer-button"></button>
-          </div>
-        </section>
-      </section>
-      <h2 id="feedback"></h2>
-    </div>
-
-    <section id="initials-container" class="has-text-centered">
-      <form action="" id="enter-initials">
-        <label for="initials">Enter your initials:</label>
-        <input type="text" name="initials" id="initials">
-        <button type="submit">Submit</button>
-      </form>
+  <!-- <div class="container"> -->
+  <!-- container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6 -->
+  <div id="startingInfoDiv" class="has-text-centered content"> <!-- content is-normal mb-6 has-text-centered has-text-weight-semibold -->
+    <section>
+      <p id="time">Time: <span id="timer">0</span></p>
     </section>
+    <p id="question">
+      Welcome to the Star Wars Quiz!
+      Click the Choose Quiz Type button to pick the Star Wars Topic you want to be quizzed on.
+      You will have 1 minute to correctly answer 10 questions.
+    </p>
+    <p id="extra-text">May the Force be with you!</p>
+    <section id="answer-container">
+      <section id="answer-options">
+        <div class="button-div">
+          <button class="answer-button"></button>
+        </div>
+        <div class="button-div">
+          <button class="answer-button"></button>
+        </div>
+        <div class="button-div">
+          <button class="answer-button"></button>
+        </div>
+        <div class="button-div">
+          <button class="answer-button"></button>
+        </div>
+      </section>
+    </section>
+    <h2 id="feedback"></h2>
+  </div>
 
-    <div class="has-text-centered">
-      <button id="js-modal-trigger" data-target="modal-js-example" class="js-modal-trigger button is-warning m-4">
-        Choose Quiz Type
-      </button>
+  <section id="initials-container" class="has-text-centered">
+    <form action="" id="enter-initials">
+      <label for="initials">Enter your initials:</label>
+      <input type="text" name="initials" id="initials">
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <div class="has-text-centered">
+    <button id="js-modal-trigger" data-target="modal-js-example" class="js-modal-trigger button is-warning m-4">
+      Choose Quiz Type
+    </button>
+  </div>
+
+  <!-- Modal for quiz option -->
+  <div class="modal" id="modal-js-example">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          What type of <i>Stars Wars</i> quiz would you like to take?
+        </p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="rsvp" value="people" checked />
+            People
+          </label>
+          <label class="radio">
+            <input type="radio" name="rsvp" value="planets" />
+            Planets
+          </label>
+          <label class="radio">
+            <input type="radio" name="rsvp" value="starships" />
+            Starships
+          </label>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="start-quiz" class="button is-warning">Start Quiz</button>
+      </footer>
     </div>
+  </div>
 
-    <!-- Modal for quiz option -->
-    <div class="modal" id="modal-js-example">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">
-            What type of <i>Stars Wars</i> quiz would you like to take?
-          </p>
-          <button class="delete" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="rsvp" value="people" checked />
-              People
-            </label>
-            <label class="radio">
-              <input type="radio" name="rsvp" value="planets" />
-              Planets
-            </label>
-            <label class="radio">
-              <input type="radio" name="rsvp" value="starships" />
-              Starships
-            </label>
-          </div>
-        </section>
-        <footer class="modal-card-foot">
-          <button id="start-quiz" class="button is-warning">Start Quiz</button>
-        </footer>
-      </div>
+  <!-- Modal for quiz option -->
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Modal title</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Content ... -->
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success">Save changes</button>
+        <button class="button">Cancel</button>
+      </footer>
     </div>
+  </div>
 
-    <!-- Modal for quiz option -->
-    <div class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Modal title</p>
-          <button class="delete" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-          <!-- Content ... -->
-        </section>
-        <footer class="modal-card-foot">
-          <button class="button is-success">Save changes</button>
-          <button class="button">Cancel</button>
-        </footer>
-      </div>
-    </div>
-
-    <!-- JavaScript -->
-    <div id="youtubePlayer"></div>
-    <script src="assets/js/script.js"></script>
+  <!-- JavaScript -->
+  <div id="youtubePlayer"></div>
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
