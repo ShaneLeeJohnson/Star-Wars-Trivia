@@ -14,48 +14,50 @@
 <body>
   <!-- Navigation -->
   <div class="navbar-end has-background-black navbar-item">
-    <div id="highScoreDivBtn" class="button is-outlined is-warning">
-      <a href="highScores.html" class="has-text-warning	">
+    <button id="highScoreDivBtn" class="button is-warning is-outlined">
+      <a href="highScores.html" class="has-text-white">
         High Scores
       </a>
-    </div>
+    </button>
   </div>
 
   <!-- Hero Section -->
   <section class="hero is-medium is-link has-background-black">
-    <div class="columns m-4">
-    <div class="column">
-      <p class="title"><span class="font">Star Wars</span></br> Trivia <i>with Music</i></p>
-      <p class="subtitle has-text-warning">
+    <div class="columns is-gapless is-multiline m-4">
+      <div class="column is-one-fifths">
+      <img src="assets/images/Yoda.webp" class="image is-9x16" alt="A picture of yoda" id="yoda">
+    </div>    
+    <div class="column is-four-fifths">
+      <p class="title pb-4"><span class="font">Star Wars</span></br><span id="kerning">Trivia <i>with Music</i></span> </p>
+      <p class="subtitle has-text-warning pb-4">
         An app for Star Wars fans to test their knowledge!
       </p>
     </div>
-    <div class="column">
-      <img src="assets/images/Yoda.webp" class="image is-128x128" alt="A picture of yoda">
-    </div>
+    <div class="column"></div>
   </div>
   </section>
 
   <!-- Start Quiz with Start Button -->
 
   <div class="container">
-    <!-- container is-flex is-align-items-center is-justify-content-center is-align-content-center is-flex-direction-column m-6 -->
-    <div id="startingInfoDiv" class="has-text-centered content m-6"> <!-- content is-normal mb-6 has-text-centered has-text-weight-semibold -->
-      <section class="pb-4">
-        <p id="time">Time: <span id="timer">0</span></p>
+    <div id="startingInfoDiv" class="has-text-centered content m-6">
+      <section id="time" class="pb-4">
+        <p>Time: <span id="timer">0</span></p>
       </section>
       <p id="question">
         Welcome to the Star Wars Quiz!
         Click the Choose Quiz Type button to pick the Star Wars Topic you want to be quizzed on.
         You will have 1 minute to correctly answer 10 questions.
       </p>
-      <div class="has-text-centered">
-        <button id="js-modal-trigger" data-target="modal-js-example" class="js-modal-trigger button is-warning m-4">
+      <div class="has-text-centered m-4">
+        <button id="js-modal-trigger" data-target="modal-js-example" class="js-modal-trigger button is-warning is-large m-4">
           Choose Quiz Type
         </button>
       </div>
-      <p id="extra-text"><i>May the FORCE be with you!</i></p>
-  
+      <div class="text">
+        <p id="extra-text"></p>
+        <p id="greeting-text"><i>May the FORCE be with you!</i></p>
+      </div>
       <section id="answer-container">
         <section id="answer-options">
           <div class="button-div p-2">
@@ -88,19 +90,11 @@
       <div class="modal-content">
         <div class="box">
           <p>Enter your initials to save high score!</p>
-          <!-- Your content -->
         </div>
       </div>
     
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    
-
-    <!-- <div class="has-text-centered">
-      <button id="js-modal-trigger" data-target="modal-js-example" class="js-modal-trigger button is-warning m-4">
-        Choose Quiz Type
-      </button>
-    </div> -->
 
   <!-- Modal for quiz option -->
   <div class="modal" id="modal-js-example">
@@ -133,7 +127,9 @@
       </footer>
     </div>
   </div>
-
+<footer>
+  <h6 class="content is-normal is-gapless m-2">THE REBEL ALLIANCE</br>Shane, Angela, Danny, & Kalyn</h6>
+</footer>
     <!-- JavaScript -->
     <div id="youtubePlayer"></div>
     <script src="assets/js/script.js"></script>
