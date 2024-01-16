@@ -11,6 +11,7 @@ const initialsContainer = document.querySelector("#initials-container");
 const timerElement = document.querySelector("#timer");
 const timeDiv = document.querySelector("#time");
 const initialsForm = document.querySelector("#enter-initials");
+const restartButton = document.querySelector("#restart");
 const feedback = document.querySelector("#feedback");
 const url = "https://swapi.dev/api/";
 let currentQuestion = "";
@@ -24,6 +25,8 @@ answerContainer.style.display = "none";
 initialsContainer.style.display = "none";
 timeDiv.style.display = "none";
 greetingText.style.display = "none";
+restartButton.style.display = "none";
+
 
 const peopleQuestions = [
   {
@@ -385,6 +388,7 @@ function gameOver() {
   initialsContainer.style.display = "block";
   timeDiv.style.display = "none";
   feedback.textContent = "";
+  restartButton.style.display = "block";
   player.stopVideo();
 }
 
@@ -507,3 +511,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+restartButton.addEventListener("click", function () {
+    window.location.reload();
+  });
+  
