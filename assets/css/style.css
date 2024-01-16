@@ -77,14 +77,24 @@
     color: black;
 }
 
+.blinky {
+    transition: 1s opacity;
+    -moz-transition: 1s opacity;
+    -webkit-transition: 1s opacity;
+}
+
 button {
     cursor: pointer;
 }
 
 button:hover {
-    background: gold;
-    color: whitesmoke;
+    background: grey;
 }
+
+#initialscontainer {
+    border: solid 2px black;
+}
+
   
 footer {
     position: fixed;
@@ -105,5 +115,17 @@ footer {
 @media only screen and (max-width: 800px) {
     #yoda {
        display: none;
+    }
+    .modal-card-title {
+        font-size: medium;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .modal-card-title {
+        font-size: medium;
+        display:flex;
+        flex-direction: column;
+        flex-wrap: wrap;
     }
 }
