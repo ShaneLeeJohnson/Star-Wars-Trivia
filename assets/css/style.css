@@ -60,9 +60,14 @@
     padding: 10px;
     padding-bottom: 20px;
 }
+
 #question {
     font-size: 20px;
     font-weight: bold;
+}
+
+#number-text {
+height: 80px;
 }
 
 .text {
@@ -77,34 +82,28 @@
     color: black;
 }
 
-.blinky {
-    transition: 1s opacity;
-    -moz-transition: 1s opacity;
-    -webkit-transition: 1s opacity;
-}
-
 button {
     cursor: pointer;
 }
 
 button:hover {
-    background: grey;
-}
-
-#initialscontainer {
-    border: solid 2px black;
-}
-
-  
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
+    background: hsl(48, 100%, 67%);
     color: white;
-    text-align: center;
-  }
+}
+
+.button.is-focused, .button:focus {
+    border-color: #dbdbdb !important;
+    color: #363636 !important;
+}
+
+.button.is-focused:not(:active), .button:focus:not(:active) {
+    box-shadow: none !important;
+}
+
+#initials-container {
+    border: solid 2px black;
+    padding: 30px;
+}
 
 @media screen and (max-width: 491px) {
     .HHSClass {

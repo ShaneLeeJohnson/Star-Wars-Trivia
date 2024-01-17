@@ -44,9 +44,13 @@
       <section id="time" class="pb-4">
         <p>Time: <span id="timer">0</span></p>
       </section>
+      <div class="text">
+        <p id="extra-text"></p>
+        <h4 id="number-text"><i>“I have a bad feeling about this.”</i></h4>
+        <p id="greeting-text"><i>May the FORCE be with you!</i></p>
+      </div>
       <p id="question">
-        Welcome to the Star Wars Quiz!
-        Click the Choose Quiz Type button to pick the Star Wars Topic you want to be quizzed on.
+        Click the Choose Quiz Type button to pick the Star Wars topic you want to be quizzed on. </br>
         You will have 1 minute to correctly answer 10 questions.
       </p>
       <div class="has-text-centered m-4">
@@ -54,10 +58,7 @@
           Choose Quiz Type
         </button>
       </div>
-      <div class="text">
-        <p id="extra-text"></p>
-        <p id="greeting-text"><i>May the FORCE be with you!</i></p>
-      </div>
+   
       <section id="answer-container">
         <section id="answer-options">
           <div class="button-div p-2">
@@ -77,11 +78,12 @@
       <h2 id="feedback"></h2>
     </div>
     
-  <section id="initials-container" class="has-text-centered">
+  <section id="initials-container" class="container content has-text-centered">
+<h3>ENTER INITIALS HERE</h3>
     <form action="" id="enter-initials">
-      <label for="initials">Enter your initials:</label>
-      <input type="text" name="initials" id="initials">
-      <button type="submit">Submit</button>
+      <label for="initials"></label>
+      <input style="height: 40px; font-size:14pt;" type="text" name="initials" id="initials">
+      <button class="button is-warning"type="submit">Submit</button>
     </form>
   </section>
 
@@ -127,9 +129,6 @@
       </footer>
     </div>
   </div>
-<footer>
-  <h6 class="content is-normal is-gapless m-2">THE REBEL ALLIANCE</br>Shane, Angela, Danny, & Kalyn</h6>
-</footer>
     <!-- JavaScript -->
     <div id="youtubePlayer"></div>
     <script src="assets/js/script.js"></script>

@@ -2,6 +2,7 @@
 const highScoreBtnDiv = document.querySelector("#highScoreDivBtn");
 const questionContainer = document.querySelector("#question");
 const extraText = document.querySelector("#extra-text");
+const numberText = document.querySelector("#number-text");
 const greetingText = document.querySelector("#greeting-text");
 const answerContainer = document.querySelector("#answer-container");
 const answerChoices = document.querySelectorAll(".answer-button");
@@ -291,14 +292,14 @@ startButton.addEventListener("click", () => {
 function startCountdown() {
   // This function starts the countdown for how long it may take to get the info from the API itself and display the questions at the start.
   let secondsRemaining = 5;
-  questionContainer.textContent = `Game starts in`;
-  extraText.textContent = "";        
+  extraText.textContent = `Game starts in`;
+  numberText.textContent = "";        
   greetingText.style.display = "block";
-
+  questionContainer.style.display = "none";
 
   const interval = setInterval(() => {
-    questionContainer.textContent = `Game starts in`;
-    extraText.textContent = secondsRemaining;
+    extraText.textContent = `Game starts in`;
+    numberText.textContent = secondsRemaining;
     secondsRemaining--;
     if (secondsRemaining === -1) {
       clearInterval(interval);
@@ -306,6 +307,9 @@ function startCountdown() {
       timerCountdown();
       timeDiv.style.display = "block";
       greetingText.style.display = "none";
+      questionContainer.style.display = "none";
+      numberText.style.display = "none";
+      questionContainer.style.display = "block";
     }
   }, 1000);
 }
@@ -326,6 +330,7 @@ function timerCountdown() {
 
 function displayQuestion() {
   // This function displays the current quesstion that is prepared.
+  questionContainer.style.display = "block";
   questionContainer.textContent = currentQuestion.question;
   answerContainer.style.display = "block";
   extraText.style.display = "none";
