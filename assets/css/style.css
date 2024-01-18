@@ -1,15 +1,28 @@
+@import url('https://fonts.cdnfonts.com/css/star-wars');
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    background: hsl(48, 100%, 67%);
+    color: white;
+}
+
 .HSBFlex {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.HSBFlex h2 {
+    font-size: 30px;
+}
+
 .divH2 {
     border-bottom: solid gold 3px;
     margin-top: 5px;
 }
-
-@import url('https://fonts.cdnfonts.com/css/star-wars');
 
 .font {
     font-family: 'Star Wars';
@@ -18,28 +31,12 @@
     border-bottom: 1px solid white;
 }
 
-#kerning {
-    letter-spacing: 4px;
-    font-size: 35px;
-    font-weight: bold;
-}
-
-.HSBFlex h2 {
-    font-size: 30px;
-}
-
 .clearDivBtn {
     margin: 20px 40px 0px 40px;
     display: flex;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#startingInfoDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,34 +58,10 @@
     padding-bottom: 20px;
 }
 
-#question {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#number-text {
-height: 80px;
-}
-
 .text {
     font-size: 30px;
     font-weight: bold;
     color: black;
-}
-
-#timer, #time {
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
-}
-
-button {
-    cursor: pointer;
-}
-
-button:hover {
-    background: hsl(48, 100%, 67%);
-    color: white;
 }
 
 .button.is-focused, .button:focus {
@@ -98,6 +71,34 @@ button:hover {
 
 .button.is-focused:not(:active), .button:focus:not(:active) {
     box-shadow: none !important;
+}
+
+#kerning {
+    letter-spacing: 4px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#startingInfoDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#number-text {
+height: 80px;
+}
+
+#timer, #time {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
 }
 
 #initials-container {
