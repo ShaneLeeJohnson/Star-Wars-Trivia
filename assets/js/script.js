@@ -1,4 +1,4 @@
-// Below here are the elements that will be used for dom minipulation
+// Below here are the elements that will be used for dom manipulation
 const highScoreBtnDiv = document.querySelector("#highScoreDivBtn");
 const questionContainer = document.querySelector("#question");
 const extraText = document.querySelector("#extra-text");
@@ -21,11 +21,13 @@ let timerInterval;
 let remainingTime;
 let quizQuestions;
 
+// Hides certain elements so that they aren't visible when the page loads
 answerContainer.style.display = "none";
 initialsContainer.style.display = "none";
 timeDiv.style.display = "none";
 greetingText.style.display = "none";
 
+// Questions array for the people topic
 const peopleQuestions = [
   {
     question: "Who is the protagonist of the original trilogy?",
@@ -88,6 +90,7 @@ const peopleQuestions = [
   },
 ];
 
+// Questions array for the planets topic
 const planetQuestions = [
   {
     question:
@@ -151,6 +154,7 @@ const planetQuestions = [
   },
 ];
 
+// Questions array for the Starships topic
 const starshipQuestions = [
   {
     question:
@@ -234,8 +238,8 @@ const starshipQuestions = [
   },
 ];
 
+// This function is used to save the answers from the API.
 function getCorrectAnswers(data, questions) {
-  // This function is used to save the answers from the API.
   const correctAnswers = [];
   for (i = 0; i < 10; i++) {
     correctAnswers.push(data.results[i].name);
@@ -252,16 +256,17 @@ function getCorrectAnswers(data, questions) {
   console.log(questions);
 }
 
+// This function returns a random question from its own category.
 function getRandomQuestion(questions) {
-  // This function returns a question random question from its own category.
   const randIndex = Math.floor(Math.random() * questions.length);
   const selectedQuestion = questions[randIndex];
   questions.splice(randIndex, 1);
   return selectedQuestion;
 }
 
+// Adds functionality to the start button in the choose quiz type modal. 
+// It also checks the user choices for the modal and assigns quizQuestions with the correlated subject.
 startButton.addEventListener("click", () => {
-  // This line adds functionality to the start button on the start of the page, it also checks the user choies for the modal and assigns quizQuetions with the correlated subject.
   endpoint = document.querySelector('input[name="rsvp"]:checked').value;
   switch (endpoint) {
     case "people":
@@ -277,7 +282,7 @@ startButton.addEventListener("click", () => {
       console.error("Invalid endpoint:", endpoint);
       return;
   }
-  fetch(`${url}${endpoint}/`) //API call is madet
+  fetch(`${url}${endpoint}/`) //API call is made
     .then((response) => response.json())
     .then((data) => {
       getCorrectAnswers(data, quizQuestions);
@@ -289,8 +294,9 @@ startButton.addEventListener("click", () => {
   player.playVideo();
 });
 
+// This function starts the countdown for how long it may take to get the info from the API itself 
+// and display the questions at the start.
 function startCountdown() {
-  // This function starts the countdown for how long it may take to get the info from the API itself and display the questions at the start.
   let secondsRemaining = 5;
   extraText.textContent = `Game starts in`;
   numberText.textContent = "";        
@@ -314,8 +320,8 @@ function startCountdown() {
   }, 1000);
 }
 
+// This function starts the 1 minute timer that is given for the user to complete the trivia.
 function timerCountdown() {
-  // This function starts the 1 minute timer that is given for the user to complete the trivia.
   remainingTime = 60;
   timerElement.textContent = remainingTime;
   timerInterval = setInterval(() => {
@@ -328,8 +334,8 @@ function timerCountdown() {
   }, 1000);
 }
 
+// This function displays the current question that is prepared.
 function displayQuestion() {
-  // This function displays the current quesstion that is prepared.
   questionContainer.style.display = "block";
   questionContainer.textContent = currentQuestion.question;
   answerContainer.style.display = "block";
@@ -341,18 +347,18 @@ function displayQuestion() {
   });
 }
 
+// This function hides the modal element used to choose the subject of the trivia.
 function hideElements() {
-  // This function hides the modal element used to choose the subject of the trivia.
   chooseQuizBtn.style.display = "none";
 }
 
+// This function is used to check if the users answer choice is the correct answer.
 function checkAnswer(userAnswer, correctAnswer) {
-  // This function is used to check if the users answer choice is the correct answer.
   return userAnswer === correctAnswer;
 }
 
+// This function is attached to an addEventListener for the answer choices that are displayed
 function handleAnswerClick(event) {
-  // This function is attached to an addeventlistener for the answer choices that are displayed
   const selectedAnswer = event.target.textContent;
   const isCorrect = checkAnswer(selectedAnswer, currentQuestion.correctAnswer);
   if (isCorrect) {
@@ -379,8 +385,8 @@ function handleAnswerClick(event) {
   }, 1000);
 }
 
+// This function changes elements to let the user know that the game ended and pauses the background music.
 function gameOver() {
-  // This function changes elements to let the user know that the game ended and pauses the background music.
   greetingText.style.display = 'block';
   extraText.textContent = `Game Over!`;
   questionContainer.style.display = "none";
@@ -393,8 +399,9 @@ function gameOver() {
   player.stopVideo();
 }
 
+// This addEventListener is attached to the submit button for the initials and lets the user know that 
+// initials are required to save to the users local storage and display it in the highscores page.
 initialsForm.addEventListener("submit", function (event) {
-  // This addeventlistner is attached to the submit button for the initials and lets the user know that a initial is required to save to the users local storage and display it in the highscores page.
   event.preventDefault();
   const initials = document.querySelector("#initials").value;
   if (initials !== "") {
@@ -415,8 +422,8 @@ initialsForm.addEventListener("submit", function (event) {
   }
 });
 
+// this addEventListener is used to send the user to the highscores page which is attached to the highscores button.
 highScoreBtnDiv.addEventListener("click", () => {
-  // this addeventlistener is used to send the user to the highscores page which is attached to the highscores button.
   window.location.href = "./highScores.html";
 });
 
