@@ -1,29 +1,36 @@
+/* Font import for "Star Wars" font*/
 @import url('https://fonts.cdnfonts.com/css/star-wars');
 
+/* When mouse hovers over button, the mouse icon changes to pointer */
 button {
     cursor: pointer;
 }
 
+/* When mouse hovers over button, the button background color changes to yellow*/
 button:hover {
     background: hsl(48, 100%, 67%);
     color: white;
 }
 
+/* Flex box for main text */
 .HSBFlex {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Font size for title in main text on High Scores page */
 .HSBFlex h2 {
     font-size: 30px;
 }
 
+/* To underline  */
 .divH2 {
     border-bottom: solid gold 3px;
     margin-top: 5px;
 }
 
+/* Font for hero  main title*/
 .font {
     font-family: 'Star Wars';
     padding-left: 15px;
@@ -31,96 +38,102 @@ button:hover {
     border-bottom: 1px solid white;
 }
 
+/* Margin for "clear" button */
 .clearDivBtn {
     margin: 20px 40px 0px 40px;
     display: flex;
 }
 
+/* Setting flexbox for container div */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.HHSClass {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
+/* Height for Chewbacca */
 .chewbaccaPic {
     height: 300px;
 }
 
+/* Margin and padding for .pb-4 class - for hero section title */
 .pb-4 {
     margin: 10px;
     padding: 10px;
-    padding-bottom: 20px;
 }
 
+/* Font styling for .text class */
 .text {
     font-size: 30px;
     font-weight: bold;
     color: black;
 }
 
+/* Button hover override to remove blue drop-shadow */
 .button.is-focused, .button:focus {
     border-color: #dbdbdb !important;
     color: #363636 !important;
 }
 
+/* Button hover override to remove drop-shadow on non-active buttons*/
 .button.is-focused:not(:active), .button:focus:not(:active) {
     box-shadow: none !important;
 }
 
+/* Font styling too add spacing to header title (Trivia with Music) */
 #kerning {
     letter-spacing: 4px;
     font-size: 35px;
     font-weight: bold;
 }
 
+/* Main page flexbox to center-align elements  */
 #startingInfoDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Font styling for question text and margin */
 #question {
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
 }
 
+/* Added height to number-text in text div*/
 #number-text {
 height: 80px;
 }
 
+/* Font styling for time and timer classes */
 #timer, #time {
     font-size: 20px;
     font-weight: bold;
     color: black;
 }
 
+/* Borer and padding for initals form box */
 #initials-container {
     border: solid 2px black;
     padding: 30px;
 }
 
+/* Media query: flex-direction for smaller screens*/
 @media screen and (max-width: 491px) {
     .HHSClass {
         flex-direction: column;
     }
 }
 
+/* Media query: image removal for smaller screens*/
 @media only screen and (max-width: 800px) {
     #yoda {
        display: none;
     }
-    .modal-card-title {
-        font-size: medium;
-    }
 }
 
+/* Modal card title styling for smaller screens */
 @media only screen and (max-width: 320px) {
     .modal-card-title {
         font-size: medium;
